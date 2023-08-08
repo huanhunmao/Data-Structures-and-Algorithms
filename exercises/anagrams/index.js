@@ -8,6 +8,19 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+    const cleanStr1 = cleanStr(stringA)
+    const cleanStr2 = cleanStr(stringB)
+
+    return sortStr(cleanStr1) === sortStr(cleanStr2)
+}
+
+function cleanStr(str){  // 将不是字母的排除掉
+    return str.replace(/[^\w]/g, '').toLowerCase() // 匹配所有不是字母（包括大小写）、数字或下划线的字符, 替换为空
+}
+
+function sortStr(str){ // 字符排序 
+    return str.split('').sort().join('')
+}
 
 module.exports = anagrams;
