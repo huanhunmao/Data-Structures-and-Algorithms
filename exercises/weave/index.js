@@ -24,6 +24,21 @@
 
 const Queue = require('./queue');
 
-function weave(sourceOne, sourceTwo) {}
+function weave(sourceOne, sourceTwo) {
+  const resultQueue = new Queue();
+
+  // 哪个有就返回哪个  做个判断就好 
+  while (sourceOne.peek() || sourceTwo.peek()) {
+    if (sourceOne.peek()) {
+      resultQueue.add(sourceOne.remove());
+    }
+    if (sourceTwo.peek()) {
+      resultQueue.add(sourceTwo.remove());
+    }
+  }
+
+  return resultQueue;
+}
 
 module.exports = weave;
+
