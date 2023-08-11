@@ -12,6 +12,34 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+// 1 快慢指针
+// function midpoint(list) {
+//     let slow = list.getFirst()
+//     let fast = list.getFirst()
+
+//     while(fast && fast.next && fast.next.next){
+//         slow = slow.next
+//         fast = fast.next.next
+//     }
+
+//     return slow
+// }
+
+// 2 快慢指针 好像 更好理解 
+function midpoint(list){
+    let slow = list.getFirst()
+    let fast = list.getFirst()
+    let counter = 0
+
+    while(fast && fast.next){
+        fast = fast.next 
+        counter ++ 
+        if(counter % 2 === 0){ // 整除的下一个 就是要的值
+            slow = slow.next
+        }
+    }
+
+    return slow
+}
 
 module.exports = midpoint;

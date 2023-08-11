@@ -105,7 +105,48 @@ class LinkedList {
 
     // 传入 index 获得当前链表值
     getAt(index){
-        
+        let counter = 0
+        let current = this.head 
+        while(current){
+            if(counter === index){ // 找了直接 return 结果 
+                return current
+            }
+
+            counter ++ 
+            current = current.next // 继续往下拉
+        }
+
+        return null // 找不到 return null
+    }
+
+    // 删除某个 index 
+    removeAt(index){
+        if(!this.head){ // 空直接返回
+            return 
+        }
+
+        if(index === 0){ // 删除第一个 直接指针指向下一个
+            this,head = this.head.next 
+            return 
+        }
+
+        const previous = this.getAt(index - 1) // 拿到要删除的前一个
+        if(!previous || !previous.next){
+            return 
+        }
+        previous.next = previous.next.next // 将前一个直接指向 要删除的下一个
+    }
+
+    // 随机插入
+    insertAt(data, index){
+        if(!this.head || index === 0){ // 插入在第一个位置
+            this.insertFirst()
+            return 
+        }
+
+        const previous = this.getAt(index - 1) || this.getLast() // 拿到要插入的前一个 
+        const newNode  = new Node(data, previous.next) // 将前一个指向 这个插入的 index 上
+        previous.next = newNode
     }
 }
 

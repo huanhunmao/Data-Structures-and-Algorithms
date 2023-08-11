@@ -11,6 +11,26 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+// 双指针 有点迷糊
+function fromLast(list, n) {
+    let slow  = list.getFirst();
+    let fast = list.getFirst();
+
+    // Move the fast pointer n steps ahead 将快指针向前移动 n 步 关键就在这个地方 
+    for (let i = 0; i < n; i++) {
+        if(!fast.next){
+            throw new Error('Not enough nodes in the list')
+        }
+        fast = fast.next
+    }
+
+     // Move both pointers until the fast pointer reaches the end 直到快指针到达末尾
+    while(fast.next){
+        slow = slow.next
+        fast = fast.next
+    }
+
+    return slow
+}   
 
 module.exports = fromLast;

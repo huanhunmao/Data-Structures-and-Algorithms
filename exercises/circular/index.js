@@ -12,6 +12,21 @@
 //   c.next = b;
 //   circular(l) // true
 
-function circular(list) {}
+// 1 快慢指针 非常好理解 
+function circular(list) {
+    let slow = list.getFirst()
+    let fast = list.getFirst()
+
+    while(slow && slow.next && fast && fast.next && fast.next){
+        slow = slow.next 
+        fast = fast.next.next
+
+        if(slow === fast){ // 只要能找到一样的 就   说明有环
+            return true
+        }
+    }
+
+    return false
+}
 
 module.exports = circular;
