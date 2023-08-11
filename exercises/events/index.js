@@ -4,16 +4,33 @@
 // have methods 'on', 'trigger', and 'off'.
 
 class Events {
+    constructor(){
+        this.events = []
+    }
   // Register an event handler
-  on(eventName, callback) {}
+  on(eventName, callback) {
+    if(!this.events[eventName]){ // 如果没有内容就初始化
+        this.events[eventName] = []
+    }
+
+    this.events[eventName].push(callback) // 将 callback 放入其中
+  }
 
   // Trigger all callbacks associated
   // with a given eventName
-  trigger(eventName) {}
+  trigger(eventName) {
+    const callbacks = this.events[eventName]
+
+    if(callbacks){
+        callbacks.forEach(callback => callback()) // 如果有顺序触发 回调函数
+    }
+  }
 
   // Remove all event handlers associated
   // with the given eventName
-  off(eventName) {}
+  off(eventName) {
+    delete this.events[eventName]
+  }
 }
 
 module.exports = Events;
