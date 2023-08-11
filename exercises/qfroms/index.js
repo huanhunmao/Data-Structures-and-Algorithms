@@ -14,6 +14,25 @@
 
 const Stack = require('./stack');
 
-class Queue {}
+class Queue {
+    constructor(){
+        this.queue = [];
+    }
+
+    add(data){
+        this.queue.push(data);
+    }
+
+    remove(){
+        return this.queue.shift()
+    }
+
+    peek(){
+       if(this.queue.length > 0){ // 队列顶元素 就是 queue[0]  栈顶为 stack[this.stack.length - 1]
+        return this.queue[0]
+       }
+       return null
+    }
+}
 
 module.exports = Queue;
